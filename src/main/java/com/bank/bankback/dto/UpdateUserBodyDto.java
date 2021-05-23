@@ -11,8 +11,8 @@ public class UpdateUserBodyDto extends CreateUserBodyDto{
 
     private long id;
 
-    public UpdateUserBodyDto(long id, long document, String name, String userName, String password, boolean isActive){
-        super(document,name,userName,password,isActive);
+    public UpdateUserBodyDto(long id, long document, String name, String username, boolean isActive){
+        super(document,name,username,isActive);
         this.id = id;
     }
 

@@ -7,7 +7,6 @@ CREATE TABLE IF NOT EXISTS userr
     document NUMERIC NOT NULL,
     name VARCHAR(255),
     username VARCHAR(255),
-    password VARCHAR(10),
     active boolean NOT NULL,
     UNIQUE(document)
 );

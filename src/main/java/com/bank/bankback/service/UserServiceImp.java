@@ -82,7 +82,6 @@ public class UserServiceImp implements UserService{
                 dao.getDocument(),
                 dao.getName(),
                 dao.getUsername(),
-                dao.getPassword(),
                 dao.isActive()
         );
     }
@@ -92,7 +91,6 @@ public class UserServiceImp implements UserService{
                 user.getDocument(),
                 user.getName(),
                 user.getUsername(),
-                user.getPassword(),
                 user.isActive());
     }
 

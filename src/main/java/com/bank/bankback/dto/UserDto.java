@@ -9,20 +9,18 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDto {
 
-    private long id;
-    private long document;
+    private Long id;
+    private Long document;
     private String name;
-    private String userName;
-    private String password;
+    private String username;
     private boolean isActive;
 
-    public UserDto(long id, long document, String name, String userName, String password, boolean isActive){
+    public UserDto(Long id, Long document, String name, String username, boolean isActive){
 
         this.id = id;
         this.document = document;
         this.name = name;
-        this.userName = userName;
-        this.password = password;
+        this.username = username;
         this.isActive = isActive;
 
     }

@@ -11,16 +11,14 @@ public class CreateUserBodyDto {
 
     private long document;
     private String name;
-    private String userName;
-    private String password;
+    private String username;
     private boolean active;
 
-    public CreateUserBodyDto(long document, String name, String userName, String password, boolean active){
+    public CreateUserBodyDto(long document, String name, String username, boolean active){
 
         this.document = document;
         this.name = name;
-        this.userName = userName;
-        this.password = password;
+        this.username = username;
         this.active = active;
 
     }

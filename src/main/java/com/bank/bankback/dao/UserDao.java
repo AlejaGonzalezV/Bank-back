@@ -16,22 +16,20 @@ public class UserDao {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_GENERATOR")
     @SequenceGenerator(name = "USER_GENERATOR", sequenceName = "USER_SEQ", allocationSize = 1)
-    private long id;
+    private Long id;
 
     @Column(unique = true)
-    private long document;
+    private Long document;
 
     private String name;
     private String username;
-    private String password;
     private boolean active;
 
-    public UserDao(long document, String name, String username, String password, boolean active){
+    public UserDao(Long document, String name, String username, boolean active){
 
         this.document = document;
         this.name = name;
         this.username = username;
-        this.password = password;
         this.active = active;
 
     }

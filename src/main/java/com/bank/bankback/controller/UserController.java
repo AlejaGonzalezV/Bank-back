@@ -74,7 +74,6 @@ public class UserController {
                 user.getId(),
                 user.getDocument(),
                 user.getName(),
-                user.getPassword(),
                 user.getUsername(),
                 user.isActive());
     }
@@ -83,8 +82,7 @@ public class UserController {
         return new User(
                 dto.getDocument(),
                 dto.getName(),
-                dto.getUserName(),
-                dto.getPassword(),
+                dto.getUsername(),
                 dto.isActive());
 
     }
@@ -94,8 +92,7 @@ public class UserController {
                 dto.getId(),
                 dto.getDocument(),
                 dto.getName(),
-                dto.getUserName(),
-                dto.getPassword(),
+                dto.getUsername(),
                 dto.isActive());
     }
 
