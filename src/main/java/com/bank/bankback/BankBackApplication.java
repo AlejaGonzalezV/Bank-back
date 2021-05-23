@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class BankBackApplication {
 
-    @Value("${ALLOWED_ORIGINS:http://localhost:8080}")
+    //@Value("${ALLOWED_ORIGINS:http://localhost:8080}")
     private String allowedOrigins;
 
     public static void main(String[] args) {
