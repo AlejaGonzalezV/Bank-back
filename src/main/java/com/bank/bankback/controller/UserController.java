@@ -50,9 +50,14 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<?> saveUser(@RequestBody CreateUserBodyDto userDto) {
         try {
-            var user = map(userDto);
-            user = userService.save(user);
-            return new ResponseEntity<UserDto>(map(user), HttpStatus.CREATED);
+
+            if(userDto.getName() == null && userDto.getUsername() == null){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(String.format("Bad user", userDto.getDocument()));
+            }else{
+                var user = map(userDto);
+                user = userService.save(user);
+                return new ResponseEntity<UserDto>(map(user), HttpStatus.CREATED);
+            }
 
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(String.format("The user with document %s has already been created", userDto.getDocument()));
@@ -62,8 +67,12 @@ public class UserController {
     @PutMapping("/users/{id}")
     public ResponseEntity updateUser(@PathVariable("id") long id, @RequestBody UpdateUserBodyDto userDto) {
         try {
-            var updatedUser = userService.replace(id, map(userDto));
-            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+            if(userDto.getName() == null && userDto.getUsername() == null){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(String.format("Bad user", userDto.getDocument()));
+            }else {
+                var updatedUser = userService.replace(id, map(userDto));
+                return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+            }
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user does not exist");
         }
