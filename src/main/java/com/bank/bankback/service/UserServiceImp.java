@@ -41,9 +41,15 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User save(User user) {
+    public User save(User user) throws Exception {
         var dao = map(user);
-        var saved = userRepository.save(dao);
+        UserDao saved;
+        if(userRepository.findByDocument(dao.getDocument()) == null){
+            saved = userRepository.save(dao);
+
+        }else{
+            throw new Exception("El usuario ya está registrado");
+        }
         return map(saved);
     }
 

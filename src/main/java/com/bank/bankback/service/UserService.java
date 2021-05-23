@@ -9,7 +9,7 @@ public interface UserService {
 
     User get(long id) throws Exception;
 
-    User save(User user);
+    User save(User user) throws Exception;
 
     User replace(long idDocument, User user) throws Exception;
 
