@@ -10,6 +10,7 @@ import au.com.dius.pact.provider.spring.junit5.MockMvcTestTarget;
 import com.bank.bankback.controller.UserController;
 import com.bank.bankback.model.User;
 import com.bank.bankback.service.UserService;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
@@ -60,7 +61,8 @@ public class UserTest {
     }
 
     @State("document user")
-    public void deleteUser() throws Exception {
+    @SneakyThrows
+    public void deleteUser() {
 
         Long iddocument = 1007554028L;
 
@@ -71,7 +73,8 @@ public class UserTest {
     }
 
     @State("new user")
-    public void saveUser() throws Exception {
+    @SneakyThrows
+    public void saveUser() {
         User user = new User();
         user.setName("Jasper");
         user.setUsername("Jas123");
@@ -82,7 +85,8 @@ public class UserTest {
     }
 
     @State("edit user")
-    public void editUser() throws Exception {
+    @SneakyThrows
+    public void editUser() {
         User user = new User();
         user.setName("Jasper");
         user.setUsername("Jas123");

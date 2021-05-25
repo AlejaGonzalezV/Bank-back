@@ -13,5 +13,5 @@ public interface UserService {
 
     User replace(long idDocument, User user) throws Exception;
 
-    void delete(long id) throws Exception;
+    boolean delete(long id) throws Exception;
 }

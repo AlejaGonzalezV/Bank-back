@@ -71,7 +71,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public void delete(long id) throws Exception {
+    public boolean delete(long id) throws Exception {
         var dao = userRepository.findByDocument(id);
 
         if (dao == null) {
@@ -79,6 +79,7 @@ public class UserServiceImp implements UserService{
         }
 
         userRepository.delete(dao);
+        return true;
     }
 
 
