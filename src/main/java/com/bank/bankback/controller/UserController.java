@@ -51,7 +51,7 @@ public class UserController {
     public ResponseEntity<?> saveUser(@RequestBody CreateUserBodyDto userDto) {
         try {
 
-            if(userDto.getName() == null && userDto.getUsername() == null){
+            if(userDto.getName() == null || userDto.getUsername() == null){
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(String.format("Bad user", userDto.getDocument()));
             }else{
                 var user = map(userDto);
@@ -67,7 +67,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public ResponseEntity updateUser(@PathVariable("id") long id, @RequestBody UpdateUserBodyDto userDto) {
         try {
-            if(userDto.getName() == null && userDto.getUsername() == null){
+            if(userDto.getName() == null || userDto.getUsername() == null){
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(String.format("Bad user", userDto.getDocument()));
             }else {
                 var updatedUser = userService.replace(id, map(userDto));

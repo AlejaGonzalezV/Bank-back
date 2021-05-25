@@ -10,12 +10,12 @@ import lombok.Setter;
 public class User {
 
     private long id;
-    private long document;
+    private Long document;
     private String name;
     private String username;
     private boolean active;
 
-    public User(long id, long document, String name, String username, boolean active){
+    public User(long id, Long document, String name, String username, boolean active){
 
         this.id = id;
         this.document = document;
@@ -25,7 +25,7 @@ public class User {
 
     }
 
-    public User(long document, String name, String username, boolean active){
+    public User(Long document, String name, String username, boolean active){
 
         this.document = document;
         this.name = name;
