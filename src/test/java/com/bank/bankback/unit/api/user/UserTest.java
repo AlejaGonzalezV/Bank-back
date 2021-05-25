@@ -24,8 +24,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserTest {
@@ -175,27 +174,111 @@ public class UserTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+//    @Test
+//    @SneakyThrows
+//    public void saveUserWrongId(){
+//        User user = new User();
+//        user.setName("Jasper");
+//        user.setUsername("Jas123");
+//        user.setActive(true);
+//
+//        UserDao userDao = new UserDao();
+//        userDao.setName("Jasper");
+//        userDao.setId(80L);
+//        userDao.setUsername("Jas123");
+//        userDao.setActive(true);
+//
+//        Mockito.when(userRepository.findByDocument(user.getDocument())).thenReturn(null);
+//        Mockito.when(userRepository.save(Mockito.any(UserDao.class))).thenReturn(userDao);
+//
+//        assertThat(userService.save(user), hasProperty("name", is("Jasper")));
+//        assertThat(userService.save(user), hasProperty("document", is(65656L)));
+//        assertThat(userService.save(user), hasProperty("username", is("Jas123")));
+//        assertThat(userService.save(user), hasProperty("active", is(true)));
+//
+//    }
+
     @Test
     @SneakyThrows
-    public void saveUserWrongId(){
+    public void replaceUserSuccessful(){
+        User user = new User();
+        user.setName("Jay");
+        user.setUsername("Jay123");
+        user.setActive(false);
+        user.setDocument(65656L);
+
+        UserDao userDao = new UserDao();
+        userDao.setId(80L);
+        userDao.setName("Jasper");
+        userDao.setUsername("Jas123");
+        userDao.setActive(true);
+        userDao.setDocument(65656L);
+
+        UserDao newDao = new UserDao();
+        newDao.setId(80L);
+        newDao.setName("Jay");
+        newDao.setUsername("Jay123");
+        newDao.setActive(false);
+        newDao.setDocument(65656L);
+
+        Mockito.when(userRepository.findByDocument(user.getDocument())).thenReturn(userDao);
+        Mockito.when(userRepository.save(Mockito.any(UserDao.class))).thenReturn(newDao);
+
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("name", is("Jay")));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("document", is(65656L)));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("username", is("Jay123")));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("active", is(false)));
+
+    }
+
+    @Test
+    public void replaceUserWrong(){
         User user = new User();
         user.setName("Jasper");
         user.setUsername("Jas123");
         user.setActive(true);
+        user.setDocument(65656L);
+
+        Mockito.when(userRepository.findByDocument(user.getDocument())).thenReturn(null);
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            userService.replace(user.getDocument(), user);
+        });
+        String expectedMessage = "El usuario no existe";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @SneakyThrows
+    public void replaceUserNullName(){
+        User user = new User();
+        user.setUsername("Jay123");
+        user.setActive(false);
+        user.setDocument(65656L);
 
         UserDao userDao = new UserDao();
-        userDao.setName("Jasper");
         userDao.setId(80L);
         userDao.setUsername("Jas123");
         userDao.setActive(true);
+        userDao.setDocument(65656L);
 
-        Mockito.when(userRepository.findByDocument(user.getDocument())).thenReturn(null);
-        Mockito.when(userRepository.save(Mockito.any(UserDao.class))).thenReturn(userDao);
+        UserDao newDao = new UserDao();
+        newDao.setId(80L);
+        newDao.setName("Jay");
+        newDao.setUsername("Jay123");
+        newDao.setActive(false);
+        newDao.setDocument(65656L);
 
-        assertThat(userService.save(user), hasProperty("name", is("Jasper")));
-        assertThat(userService.save(user), hasProperty("document", is(65656L)));
-        assertThat(userService.save(user), hasProperty("username", is("Jas123")));
-        assertThat(userService.save(user), hasProperty("active", is(true)));
+        Mockito.when(userRepository.findByDocument(user.getDocument())).thenReturn(userDao);
+        Mockito.when(userRepository.save(Mockito.any(UserDao.class))).thenReturn(newDao);
+
+        assertNull(userService.replace(user.getDocument(), user).getName());
+        //assertThat(userService.replace(user.getDocument(), user), hasProperty("name", is("Jay")));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("document", is(65656L)));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("username", is("Jay123")));
+        assertThat(userService.replace(user.getDocument(), user), hasProperty("active", is(false)));
 
     }
 
