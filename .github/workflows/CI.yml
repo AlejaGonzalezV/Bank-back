@@ -29,4 +29,5 @@ jobs:
         run: ./gradlew test --tests "com.bank.bankback.contract.*"
       - name: Run component tests
         run: ./gradlew test --tests "com.bank.bankback.component.api.*"
-      
+      - name: Run unit tests
+        run: ./gradlew test --tests "com.bank.bankback.unit.*"
