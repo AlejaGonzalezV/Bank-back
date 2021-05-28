@@ -51,7 +51,7 @@ public class UserTest {
         user.setName("Jasper");
         user.setUsername("Jas123");
         user.setActive(true);
-        user.setDocument(65656);
+        user.setDocument(65656L);
 
         ArrayList<User> users = new ArrayList<User>();
         users.add(user);
@@ -79,7 +79,7 @@ public class UserTest {
         user.setName("Jasper");
         user.setUsername("Jas123");
         user.setActive(true);
-        user.setDocument(65656);
+        user.setDocument(65656L);
 
         Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(user);
     }
@@ -92,7 +92,7 @@ public class UserTest {
         user.setUsername("Jas123");
         user.setActive(true);
         user.setId(80);
-        user.setDocument(1111);
+        user.setDocument(1111L);
 
         Mockito.when(userService.replace(Mockito.eq(user.getDocument()), Mockito.any(User.class))).thenReturn(user);
     }
