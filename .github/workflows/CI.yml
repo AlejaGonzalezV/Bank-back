@@ -24,10 +24,6 @@ jobs:
         run: ./gradlew build -x test
       - name: Run contract tests
         env:
-          PACT_BROKER_BASE_URL: ${{ secrets.PACT_BROKER_URL }}
+          PACT_BROKER_URL: ${{ secrets.PACT_BROKER_URL }}
           PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
         run: ./gradlew test --tests "com.bank.bankback.contract.*"
-      - name: Run component tests
-        run: ./gradlew test --tests "com.bank.bankback.component.api.*"
-      - name: Run integration tests
-        run: ./gradlew test --tests "com.bank.bankback.unit.*"
