@@ -2,8 +2,7 @@ name: E2E API Tests
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [main]
   pull_request:
     branches: [main]
 
