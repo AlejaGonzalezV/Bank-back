@@ -24,4 +24,4 @@ jobs:
         with: 
           wait-on: "https://bank-users-back.herokuapp.com/users"
           browser: chrome
-          run: npm test
+        run: npm test
