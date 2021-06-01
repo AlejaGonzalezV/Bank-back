@@ -21,7 +21,4 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: execute e2e API tests
-        with: 
-          wait-on: "https://bank-users-back.herokuapp.com/users"
-          browser: chrome
         run: npm test
