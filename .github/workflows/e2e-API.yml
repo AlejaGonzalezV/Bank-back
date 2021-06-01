@@ -16,7 +16,7 @@ jobs:
         with: 
           repository: AlejaGonzalezV/Bank-API-Tests
       - name: use node.js 12
-        uses: actions/setuup-node@v2
+        uses: actions/setup-node@v2
         with:
           node-version: 12.x
       - name: install dependencies
